@@ -11,10 +11,11 @@ public class HomePage extends Page {
     private static final By SIGN_IN_PAGE_LINK = new By.ByClassName("login");
 
 
-
     public void navigateToSignInPage() {
 
         navigateTo(SIGN_IN_PAGE_LINK);
     }
+
+
 
 }

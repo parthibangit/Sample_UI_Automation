@@ -145,6 +145,15 @@ public class Page {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public boolean isElementDisplayed(By by) {
+        try {
+            WebElement element = waitForElementVisible(by);
+            return element.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     protected List<WebElement> getListElements(By by) {
 
         List<WebElement> elements = null;

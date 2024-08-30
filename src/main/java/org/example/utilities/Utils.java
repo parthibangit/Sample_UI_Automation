@@ -2,6 +2,8 @@ package org.example.utilities;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.util.Random;
+
 public class Utils {
 
     private Utils() {
@@ -31,4 +33,19 @@ public class Utils {
         return name+" last";
     }
 
+    public static String getRandomNumber() {
+
+        Random rand = new Random();
+        int max=27, min=1;
+        int randomNumber = rand.nextInt(max - min + 1) + min;
+        return String.valueOf(randomNumber);
+    }
+
+    public static String getRandomMonth() {
+
+        Random rand = new Random();
+        int max=12, min=1;
+        int randomNumber = rand.nextInt(max - min + 1) + min;
+        return String.valueOf(randomNumber);
+    }
 }

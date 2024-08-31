@@ -1,7 +1,5 @@
-package org.example.pageobjects;
+package org.example.pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -14,8 +12,6 @@ import java.time.Duration;
 import java.util.List;
 
 public class Page {
-
-    private static Logger logger = LogManager.getLogger(Page.class);
 
     private final WebDriver driver;
     private final long TIMEOUT = 30L;
@@ -31,7 +27,7 @@ public class Page {
             element.click();
         }
         catch (Exception e) {
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     protected String getText(By by) {
@@ -44,10 +40,11 @@ public class Page {
         }
         catch (Exception e) {
 
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return text;
     }
+
     protected void type(By by, String input) {
 
         try {
@@ -56,7 +53,7 @@ public class Page {
             element.sendKeys(input);
         }
         catch (Exception e) {
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -67,20 +64,7 @@ public class Page {
             element.click();
         }
         catch (Exception e) {
-            logger.error(e.getMessage());
-        }
-    }
-
-    protected void selectByIndex(By by, int index) {
-
-        try {
-            WebElement element = waitForElementPresent(by);
-            Select select = new Select(element);
-            select.selectByIndex(index);
-        }
-        catch (Exception e) {
-
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -93,8 +77,7 @@ public class Page {
             select.selectByValue(value);
         }
         catch (Exception e) {
-
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -107,23 +90,8 @@ public class Page {
         }
 
         catch (Exception e) {
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
-    }
-
-    protected String getValueFromInputField(By by) {
-
-        String value = null;
-
-        try {
-            WebElement element = waitForElementPresent(by);
-            value = element.getAttribute("value");
-        }
-        catch (Exception e) {
-
-            logger.error(e.getMessage());
-        }
-        return value;
     }
 
     protected void checkRadioButton(By by) {
@@ -135,7 +103,7 @@ public class Page {
             }
         }
         catch (Exception e) {
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -159,13 +127,11 @@ public class Page {
         List<WebElement> elements = null;
 
         try {
-
             waitForElementPresent(by);
             elements =  driver.findElements(by);
         }
         catch (Exception e) {
-
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return elements;
     }
@@ -174,13 +140,11 @@ public class Page {
 
         WebElement element = null;
         try {
-
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
             element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         }
         catch (Exception e) {
-
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return  element;
     }
@@ -189,13 +153,11 @@ public class Page {
 
         WebElement element = null;
         try {
-
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
             element = wait.until(ExpectedConditions.elementToBeClickable(by));
         }
         catch (Exception e) {
-
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return  element;
     }
@@ -204,13 +166,11 @@ public class Page {
 
         WebElement element = null;
         try {
-
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
             element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
         }
         catch (Exception e) {
-
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return  element;
     }

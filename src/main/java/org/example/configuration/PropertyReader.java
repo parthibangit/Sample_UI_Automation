@@ -1,17 +1,11 @@
 package org.example.configuration;
 
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 public class PropertyReader {
-
-    private static final Logger logger = LogManager.getLogger(PropertyReader.class);
 
     private static PropertyReader propertyReader = null;
     private static final Properties properties;
@@ -44,7 +38,7 @@ public class PropertyReader {
 
     /**
      * This method use to get the value from property file by passing parameter
-     * @param key
+     * @param  key
      * @return - the value if value presents in the properties file.
      */
     public String getValue(String key) {
@@ -54,12 +48,9 @@ public class PropertyReader {
             value =  properties.getProperty(key);
         }
         catch (Exception e) {
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return value;
     }
-
-
-
 
 }

@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import org.example.utilities.Utils;
 import org.testng.ITestContext;
 
 import java.io.File;
@@ -12,10 +13,11 @@ public class ExtentReport {
 
     public ExtentSparkReporter extentSparkReporter;
     public ExtentReports extentReports;
+    private final String filePath = System.getProperty("user.dir")+File.separator+"test-output"+File.separator+"reports"+File.separator+"report "+Utils.getCurrentDateAndTime()+".html";
 
-    public void startReporter()
-    {
-        extentSparkReporter  = new ExtentSparkReporter(System.getProperty("user.dir")+File.separator+"test-output"+File.separator+"report.html");
+    public void startReporter() {
+
+        extentSparkReporter  = new ExtentSparkReporter(filePath);
         extentReports = new ExtentReports();
         extentReports.attachReporter(extentSparkReporter);
 

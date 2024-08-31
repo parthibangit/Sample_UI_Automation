@@ -5,38 +5,41 @@ import com.aventstack.extentreports.Status;
 import org.example.configuration.DriverFactory;
 import org.example.configuration.ExtentReport;
 import org.example.configuration.PropertyReader;
+import org.example.utilities.Utils;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+import java.io.File;
 import java.time.Duration;
 
-public class BaseTest {
+public class BaseHelper {
 
     private final ExtentReport extentReport = new ExtentReport();
+    private final String filePath = System.getProperty("user.dir")+ File.separator+"test-output"+File.separator+"screenshots"+File.separator+"screenshot "+Utils.getCurrentDateAndTime()+".png";
     protected WebDriver driver;
-    ExtentTest extentTest;
-    ExtentTest node;
-    int count = 0;
+    private ExtentTest extentTest;
+    private ExtentTest node;
+    private int count = 0;
 
 
     @BeforeSuite
-    public void setUpReporter() {
+    protected void setUpReporter() {
 
         extentReport.startReporter();
     }
 
     @BeforeTest
-    public void createTest(ITestContext context) {
+    protected void createTest(ITestContext context) {
 
         extentTest = extentReport.createExtentTest(context);
     }
 
     @Parameters({"browserName"})
     @BeforeMethod
-    public void setUp(@Optional String browserName, ITestContext context) {
+    protected void setUp( @Optional String browserName, ITestContext context) {
 
         driver = DriverFactory.getDriver(browserName);
         openApplication();
@@ -46,27 +49,24 @@ public class BaseTest {
             node = extentTest.createNode(methods[count].getMethodName());
             count=count+1;
         }
-
     }
 
-
-    private void openApplication() {
+    protected void openApplication() {
 
         String url = PropertyReader.getInstance().getValue("url");
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30L));
     }
 
-
-
     @AfterMethod
-    public void tearDown(ITestResult result) {
+    protected void tearDown(ITestResult result) {
 
         if (result.getStatus() == ITestResult.SUCCESS) {
             node.log(Status.PASS, "Test case passed");
         }
         else if (result.getStatus() == ITestResult.FAILURE){
             node.log(Status.FAIL, "Test case failed: " + result.getThrowable());
+            Utils.takeScreenshot(filePath, driver);
         }
         else if (result.getStatus() == ITestResult.SKIP) {
             node.log(Status.SKIP, "Test case skipped");
@@ -76,7 +76,7 @@ public class BaseTest {
     }
 
     @AfterSuite
-    public void updateReport() {
+    protected void updateReport() {
         extentReport.extentReports.flush();
     }
 }

@@ -12,7 +12,10 @@
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <suiteXmlFiles>./testng.xml</suiteXmlFiles>
+        <skipTests>false</skipTests>
     </properties>
+
 
     <dependencies>
 

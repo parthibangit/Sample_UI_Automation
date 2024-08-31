@@ -2,9 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Smoke Suite">
 
-    <test verbose="2" name="SignInTest">
+    <parameter name="browserName" value="chrome" />
+    <test verbose="2" name="Ecommerce">
 
-        <parameter name="browserName" value="" />
         <classes>
             <class name="sample.ecommerce.HomePageTest"> </class>
         </classes>

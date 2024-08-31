@@ -123,4 +123,13 @@ public class Utils {
             System.out.println(e.getMessage());
         }
     }
+
+    public static String getEnvironment() {
+        String environment = System.getProperty("testEnvironment");
+
+        /* fill in a default value to run tests without maven command
+        e.g. `return (environment != null) ? environment.trim() : "test";`
+        "qa" will be used when no environment variable is set */
+        return (environment != null) ? environment.trim() : "qa";
+    }
 }

@@ -46,6 +46,13 @@ Click the run icon that available for each test method.
 ### iii) Using terminal
 Use 'mvn install' or 'mvn test' command on terminal.
 
+Note: By default test runs on 'qa' environment. If we want to run on different environment
+follow below maven command.
+
+Ex:
+For DEV Env: mvn test -DtestEnvironment=dev
+For QA Env: mvn test -DtestEnvironment=qa
+
 ### iv) Using run configuration
 Choose edit configurations on run menu. Click 'add new configuration' and select maven.
 Then add mvn commands on Run field and click apply and ok button.

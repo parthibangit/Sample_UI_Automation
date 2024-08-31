@@ -1,5 +1,7 @@
 package org.example.configuration;
 
+import org.example.utilities.Utils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,7 +11,7 @@ public class PropertyReader {
 
     private static PropertyReader propertyReader = null;
     private static final Properties properties;
-    private static final String FILE_PATH = System.getProperty("user.dir")+File.separator+"configuration.properties";
+    private static final String FILE_PATH = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"java"+File.separator+"test"+File.separator+"data"+File.separator+Utils.getEnvironment()+File.separator+"configuration.properties";
 
     private PropertyReader() {
 

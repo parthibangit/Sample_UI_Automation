@@ -23,6 +23,10 @@ The application packages are organized by application that is being tested, e.g.
        ┣ 📂 configuration
        ┣ 📂 pages
        ┣ 📂 utilities
+    📦 test.data
+       📦 dev
+       📦 qa
+         ┣ 📂 configuration.properties
 
 📦 test
   📦 java

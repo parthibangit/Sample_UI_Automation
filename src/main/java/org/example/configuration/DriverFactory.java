@@ -19,26 +19,32 @@ public class DriverFactory {
 
         browserName = (browserName != null) ? browserName : "";
 
-        if (browserName.equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            maximizeBrowser();
+        try {
+            if (browserName.equalsIgnoreCase("chrome")) {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                maximizeBrowser();
 
-        } else if (browserName.equalsIgnoreCase("firefox")) {
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
-            maximizeBrowser();
+            } else if (browserName.equalsIgnoreCase("firefox")) {
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                maximizeBrowser();
 
-        } else if (browserName.equalsIgnoreCase("edge")) {
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
-            maximizeBrowser();
+            } else if (browserName.equalsIgnoreCase("edge")) {
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                maximizeBrowser();
 
-        } else {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            maximizeBrowser();
+            } else {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                maximizeBrowser();
 
+            }
+        }
+        catch (Exception e) {
+
+            System.out.println(e.getMessage());
         }
 
         return driver;

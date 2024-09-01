@@ -59,6 +59,8 @@ For QA Env: mvn test -DtestEnvironment=qa
 
 Note: Run the tests only for 'qa' env now.
 
+However, sometime sample testing application not loading properly when we run tests after sometime.
+
 ### iv) Using run configuration
 Choose edit configurations on run menu. Click 'add new configuration' and select maven.
 Then add mvn commands on Run field and click apply and ok button.

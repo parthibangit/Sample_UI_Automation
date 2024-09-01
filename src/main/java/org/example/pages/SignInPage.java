@@ -29,11 +29,12 @@ public class SignInPage extends Page {
     private static final By SUBMIT_BUTTON = new By.ById("submitAccount");
     private static final By SUCCESS_MESSAGE = new By.ByXPath("//p[@class='alert alert-success']");
 
-    // Login with existing user section locators
+    // Login section locators
     private static final By EMAIL_ADDRESS = new By.ById("email");
     private static final By PASSWORD = new By.ById("passwd");
     private static final By SIGNIN_BUTTON = new By.ById("SubmitLogin");
     private static final By MY_SECTION_HEADER = new By.ByXPath("//h1[text()='My account']");
+    private static final By AUTHENTICATION_FAILED = new By.ByXPath("(//div[@class='alert alert-danger'])[1]");
 
     // Forgot password section locators
     private static final By FORGOT_PASSWORD_LINK_TEXT = new By.ByLinkText("Forgot your password?");
@@ -124,6 +125,7 @@ public class SignInPage extends Page {
     }
 
     public void retrievePassword(String email) {
+
         click(FORGOT_PASSWORD_LINK_TEXT);
         boolean status = isElementDisplayed(FORGOT_PASSWORD_HEADER);
         Assert.assertTrue(status);
@@ -133,7 +135,20 @@ public class SignInPage extends Page {
     }
 
     public boolean verifyRetrievePasswordEmailConfirmationIsDisplayed() {
+
         return isElementDisplayed(RETRIEVE_PASSWORD_SUCCESS_MESSAGE);
     }
 
+    public void loginWithIncorrectUserInformation() {
+
+        type(EMAIL_ADDRESS, PropertyReader.getInstance().getValue("email"));
+        type(PASSWORD, PropertyReader.getInstance().getValue("pwd")+"234");
+        click(SIGNIN_BUTTON);
+        System.out.println("... User information entered ...");
+    }
+
+    public boolean verifyAuthenticationFailedErrorMessageIsDisplayed() {
+
+        return isElementDisplayed(AUTHENTICATION_FAILED);
+    }
 }

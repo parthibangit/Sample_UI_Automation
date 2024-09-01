@@ -38,6 +38,16 @@ public class HomePageTest extends BaseHelper {
     }
 
     @Test(priority = 3)
+    public void verify_error_message_displays_when_user_login_with_invalid_credentials() {
+
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.navigateToSignInPage();
+        signInPage.loginWithIncorrectUserInformation();
+        boolean status = signInPage.verifyAuthenticationFailedErrorMessageIsDisplayed();
+        Assert.assertTrue(status);
+    }
+
+    @Test(priority = 4)
     public void verify_shopping_cart_section_is_empty_for_new_user() {
 
         SignInPage signInPage = new SignInPage(driver);
@@ -50,7 +60,20 @@ public class HomePageTest extends BaseHelper {
         signInPage.signOut();
     }
 
-    @Test(priority = 4)
+    @Test(priority = 5)
+    public void verify_success_message_displays_when_user_retrieve_password_using_forgot_password() {
+
+        SignInPage signInPage = new SignInPage(driver);
+        String email = signInPage.createNewUser();
+        signInPage.signOut();
+
+        signInPage.navigateToSignInPage();
+        signInPage.retrievePassword(email);
+        boolean status = signInPage.verifyRetrievePasswordEmailConfirmationIsDisplayed();
+        Assert.assertTrue(status);
+    }
+
+    @Test(priority = 6)
     public void verify_my_order_section_is_empty_for_new_user() {
 
         SignInPage signInPage = new SignInPage(driver);
@@ -63,7 +86,7 @@ public class HomePageTest extends BaseHelper {
         signInPage.signOut();
     }
 
-    @Test(priority = 5)
+    @Test(priority = 7)
     public void verify_my_credit_slip_section_is_empty_for_new_user() {
 
         SignInPage signInPage = new SignInPage(driver);
@@ -76,7 +99,7 @@ public class HomePageTest extends BaseHelper {
         signInPage.signOut();
     }
 
-    @Test(priority = 6)
+    @Test(priority = 8)
     public void search_product_and_verify_search_result() {
 
         String productName = "shirts";
@@ -86,7 +109,7 @@ public class HomePageTest extends BaseHelper {
         homePage.verifySearchResultsContainsProductName(productName);
     }
 
-    @Test(priority = 7)
+    @Test(priority = 9)
     public void send_query_to_customer_service_and_verify_success_message() {
 
         SignInPage signInPage = new SignInPage(driver);
@@ -101,7 +124,7 @@ public class HomePageTest extends BaseHelper {
         Assert.assertTrue(successMessageStatus);
     }
 
-    @Test(priority = 8)
+    @Test(priority = 10)
     public void verify_success_message_displays_when_user_subscribe_the_newsletter() {
 
         SignInPage signInPage = new SignInPage(driver);
@@ -114,20 +137,7 @@ public class HomePageTest extends BaseHelper {
         Assert.assertTrue(status);
     }
 
-    @Test(priority = 9)
-    public void verify_success_message_displays_when_user_retrieve_password_using_forgot_password() {
-
-        SignInPage signInPage = new SignInPage(driver);
-        String email = signInPage.createNewUser();
-        signInPage.signOut();
-
-        signInPage.navigateToSignInPage();
-        signInPage.retrievePassword(email);
-        boolean status = signInPage.verifyRetrievePasswordEmailConfirmationIsDisplayed();
-        Assert.assertTrue(status);
-    }
-
-    @Test(priority = 10)
+    @Test(priority = 11)
     public void verify_company_address_information_available_on_footer() {
 
         HomePage homePage = new HomePage(driver);
@@ -136,7 +146,7 @@ public class HomePageTest extends BaseHelper {
         Assert.assertTrue(status);
     }
 
-    @Test(priority = 11)
+    @Test(priority = 12)
     public void verify_info_message_displays_when_customer_not_having_address() {
 
         SignInPage signInPage = new SignInPage(driver);

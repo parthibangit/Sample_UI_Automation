@@ -57,6 +57,8 @@ Ex:
 For DEV Env: mvn test -DtestEnvironment=dev
 For QA Env: mvn test -DtestEnvironment=qa
 
+Note: Run the tests only for 'qa' env now.
+
 ### iv) Using run configuration
 Choose edit configurations on run menu. Click 'add new configuration' and select maven.
 Then add mvn commands on Run field and click apply and ok button.

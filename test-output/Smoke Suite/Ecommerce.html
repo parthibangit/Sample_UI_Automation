@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>TestNG:  Ecommerce</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Ecommerce</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>11/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Tue Dec 03 13:01:21 IST 2024</td>
+</tr>
+<tr><td>Total time:</td><td>205 seconds (205195 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.send_query_to_customer_service_and_verify_success_message()'><b>send_query_to_customer_service_and_verify_success_message</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>23</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.verify_user_able_to_sign_in_with_valid_credentials()'><b>verify_user_able_to_sign_in_with_valid_credentials</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>3</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.verify_my_order_section_is_empty_for_new_user()'><b>verify_my_order_section_is_empty_for_new_user</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>13</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.verify_success_message_displays_when_user_retrieve_password_using_forgot_password()'><b>verify_success_message_displays_when_user_retrieve_password_using_forgot_password</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>20</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.create_new_user_and_verify_success_message()'><b>create_new_user_and_verify_success_message</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>11</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.verify_shopping_cart_section_is_empty_for_new_user()'><b>verify_shopping_cart_section_is_empty_for_new_user</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>12</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.verify_company_address_information_available_on_footer()'><b>verify_company_address_information_available_on_footer</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>0</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.verify_info_message_displays_when_customer_not_having_address()'><b>verify_info_message_displays_when_customer_not_having_address</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>13</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.search_product_and_verify_search_result()'><b>search_product_and_verify_search_result</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>1</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.verify_my_credit_slip_section_is_empty_for_new_user()'><b>verify_my_credit_slip_section_is_empty_for_new_user</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>12</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+<tr>
+<td title='sample.ecommerce.HomePageTest.verify_success_message_displays_when_user_subscribe_the_newsletter()'><b>verify_success_message_displays_when_user_subscribe_the_newsletter</b><br>Test class: sample.ecommerce.HomePageTest</td>
+<td></td>
+<td>12</td>
+<td>sample.ecommerce.HomePageTest@c267ef4</td></tr>
+</table><p>
+</body>
+</html>

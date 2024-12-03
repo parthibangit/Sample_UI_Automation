@@ -5,26 +5,33 @@ import org.example.pages.ContactUsPage;
 import org.example.pages.HomePage;
 import org.example.pages.MyContactPage;
 import org.example.pages.SignInPage;
+import org.example.utilities.InvalidDataForLogIn;
 import org.example.utilities.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HomePageTest extends BaseHelper {
 
+    private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
     @Test(priority = 1)
     public void create_new_user_and_verify_success_message() {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.navigateToSignInPage();
+        logger.info("Navigated to sign in page");
         signInPage.enterEmailAddress(Utils.getRandomEmail(5));
         signInPage.clickCreateButton();
         boolean status = signInPage.verifyCreateAccountHeaderIsPresent();
         Assert.assertTrue(status);
+        logger.info("Create account header is present");
         signInPage.fillUserInformation(Utils.getFirstName(5), Utils.getLastName(5), Utils.getRandomPassword(7));
         signInPage.selectDateOfBirth(Utils.getRandomNumber(), Utils.getRandomMonth(), "2000");
         signInPage.clickRegisterButton();
         boolean successMessageStatus = signInPage.verifySuccessMessage();
         Assert.assertTrue(successMessageStatus);
+        logger.info("Success message displayed after creating new user");
     }
 
     @Test(priority = 2)
@@ -37,12 +44,12 @@ public class HomePageTest extends BaseHelper {
         Assert.assertTrue(status);
     }
 
-    @Test(priority = 3)
-    public void verify_error_message_displays_when_user_login_with_invalid_credentials() {
+    @Test(priority = 3, dataProvider = "invalidLoginData", dataProviderClass = InvalidDataForLogIn.class, enabled = false)
+    public void verify_error_message_displays_when_user_login_with_invalid_credentials(String email, String password) {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.navigateToSignInPage();
-        signInPage.loginWithIncorrectUserInformation();
+        signInPage.loginWithIncorrectUserInformation(email, password);
         boolean status = signInPage.verifyAuthenticationFailedErrorMessageIsDisplayed();
         Assert.assertTrue(status);
     }

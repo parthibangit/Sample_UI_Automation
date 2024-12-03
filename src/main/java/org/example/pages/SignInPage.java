@@ -139,10 +139,10 @@ public class SignInPage extends Page {
         return isElementDisplayed(RETRIEVE_PASSWORD_SUCCESS_MESSAGE);
     }
 
-    public void loginWithIncorrectUserInformation() {
+    public void loginWithIncorrectUserInformation(String email, String password) {
 
-        type(EMAIL_ADDRESS, PropertyReader.getInstance().getValue("email"));
-        type(PASSWORD, PropertyReader.getInstance().getValue("pwd")+"234");
+        type(EMAIL_ADDRESS, email);
+        type(PASSWORD, password);
         click(SIGNIN_BUTTON);
         System.out.println("... User information entered ...");
     }

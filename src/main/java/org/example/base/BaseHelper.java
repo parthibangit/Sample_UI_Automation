@@ -21,8 +21,9 @@ public class BaseHelper {
     private final String filePath = System.getProperty("user.dir")+ File.separator+"test-output"+File.separator+"screenshots"+File.separator+"screenshot "+Utils.getCurrentDateAndTime()+".png";
     protected WebDriver driver;
     private ExtentTest extentTest;
-    private ExtentTest node;
+    public ExtentTest node;
     private int count = 0;
+
 
 
     @BeforeSuite

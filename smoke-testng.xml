@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Smoke Suite">
+<suite name="Smoke Suite" thread-count="2" parallel="tests">
 
-    <parameter name="browserName" value="chrome" />
-    <test verbose="2" name="Ecommerce">
 
+    <test name="Test One">
+        <parameter name="browserName" value="chrome" />
         <classes>
             <class name="sample.ecommerce.HomePageTest">
-
                 <methods>
                     <include name="create_new_user_and_verify_success_message" />
-                    <include name="verify_user_able_to_sign_in_with_valid_credentials" />
-                    <include name="verify_shopping_cart_section_is_empty_for_new_user" />
                 </methods>
-
             </class>
-
         </classes>
-
     </test>
+
+    <test name="Test Two">
+        <parameter name="browserName" value="edge" />
+        <classes>
+            <class name="sample.ecommerce.HomePageTest">
+                <methods>
+                    <include name="verify_user_able_to_sign_in_with_valid_credentials" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
 </suite>

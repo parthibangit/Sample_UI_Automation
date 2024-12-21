@@ -1,5 +1,6 @@
 package sample.ecommerce;
 
+import com.aventstack.extentreports.Status;
 import org.example.base.BaseHelper;
 import org.example.pages.ContactUsPage;
 import org.example.pages.HomePage;
@@ -15,23 +16,23 @@ import org.testng.annotations.Test;
 public class HomePageTest extends BaseHelper {
 
     private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
-    @Test(priority = 1)
+    @Test(priority = 1, groups = "{smoke}")
     public void create_new_user_and_verify_success_message() {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.navigateToSignInPage();
-        logger.info("Navigated to sign in page");
+        node.log(Status.INFO, "Navigated to sign in page");
         signInPage.enterEmailAddress(Utils.getRandomEmail(5));
         signInPage.clickCreateButton();
         boolean status = signInPage.verifyCreateAccountHeaderIsPresent();
         Assert.assertTrue(status);
-        logger.info("Create account header is present");
+        node.log(Status.INFO, "Create account header is present");
         signInPage.fillUserInformation(Utils.getFirstName(5), Utils.getLastName(5), Utils.getRandomPassword(7));
         signInPage.selectDateOfBirth(Utils.getRandomNumber(), Utils.getRandomMonth(), "2000");
         signInPage.clickRegisterButton();
         boolean successMessageStatus = signInPage.verifySuccessMessage();
         Assert.assertTrue(successMessageStatus);
-        logger.info("Success message displayed after creating new user");
+        node.log(Status.INFO, "Success message displayed after creating new user");
     }
 
     @Test(priority = 2)

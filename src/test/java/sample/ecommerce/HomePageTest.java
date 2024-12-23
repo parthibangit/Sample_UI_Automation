@@ -2,26 +2,21 @@ package sample.ecommerce;
 
 import com.aventstack.extentreports.Status;
 import org.example.base.BaseHelper;
-import org.example.pages.ContactUsPage;
-import org.example.pages.HomePage;
-import org.example.pages.MyContactPage;
-import org.example.pages.SignInPage;
+import org.example.pages.*;
 import org.example.utilities.InvalidDataForLogIn;
 import org.example.utilities.Utils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HomePageTest extends BaseHelper {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
     @Test(priority = 1, groups = "{smoke}")
     public void create_new_user_and_verify_success_message() {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.navigateToSignInPage();
         node.log(Status.INFO, "Navigated to sign in page");
+
         signInPage.enterEmailAddress(Utils.getRandomEmail(5));
         signInPage.clickCreateButton();
         boolean status = signInPage.verifyCreateAccountHeaderIsPresent();
@@ -30,6 +25,7 @@ public class HomePageTest extends BaseHelper {
         signInPage.fillUserInformation(Utils.getFirstName(5), Utils.getLastName(5), Utils.getRandomPassword(7));
         signInPage.selectDateOfBirth(Utils.getRandomNumber(), Utils.getRandomMonth(), "2000");
         signInPage.clickRegisterButton();
+
         boolean successMessageStatus = signInPage.verifySuccessMessage();
         Assert.assertTrue(successMessageStatus);
         node.log(Status.INFO, "Success message displayed after creating new user");
@@ -40,9 +36,12 @@ public class HomePageTest extends BaseHelper {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.navigateToSignInPage();
+        node.log(Status.INFO, "Navigated to sign in page");
+
         signInPage.loginWithExistingUserInformation();
         boolean status = signInPage.verifyMyAccountHeaderIsPresent();
         Assert.assertTrue(status);
+        node.log(Status.INFO, "Create account header is present");
     }
 
     @Test(priority = 3, dataProvider = "invalidLoginData", dataProviderClass = InvalidDataForLogIn.class, enabled = false)
@@ -50,9 +49,12 @@ public class HomePageTest extends BaseHelper {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.navigateToSignInPage();
+        node.log(Status.INFO, "Navigated to sign in page");
+
         signInPage.loginWithIncorrectUserInformation(email, password);
         boolean status = signInPage.verifyAuthenticationFailedErrorMessageIsDisplayed();
         Assert.assertTrue(status);
+        node.log(Status.INFO, "Authentication failed error message displayed");
     }
 
     @Test(priority = 4)
@@ -60,12 +62,16 @@ public class HomePageTest extends BaseHelper {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.createNewUser();
+        node.log(Status.INFO, "Created new user successfully");
 
         MyContactPage myContactPage = new MyContactPage(driver);
         myContactPage.clickShopCart();
         boolean status = myContactPage.verifyInfoMessageDisplayed();
         Assert.assertTrue(status);
+        node.log(Status.INFO, "Info message displayed on my contact page");
+
         signInPage.signOut();
+        node.log(Status.INFO, "Signed out successfully");
     }
 
     @Test(priority = 5)
@@ -73,12 +79,15 @@ public class HomePageTest extends BaseHelper {
 
         SignInPage signInPage = new SignInPage(driver);
         String email = signInPage.createNewUser();
+        node.log(Status.INFO, "Created new user successfully to retrieve password");
         signInPage.signOut();
+        node.log(Status.INFO, "Signed out successfully");
 
         signInPage.navigateToSignInPage();
         signInPage.retrievePassword(email);
         boolean status = signInPage.verifyRetrievePasswordEmailConfirmationIsDisplayed();
         Assert.assertTrue(status);
+        node.log(Status.INFO, "Retrieve password email confirmation message displayed");
     }
 
     @Test(priority = 6)
@@ -86,12 +95,15 @@ public class HomePageTest extends BaseHelper {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.createNewUser();
+        node.log(Status.INFO, "Created new user successfully");
 
         MyContactPage myContactPage = new MyContactPage(driver);
         myContactPage.clickMyAccountOrderHistory();
         boolean status = myContactPage.verifyInfoMessageDisplayed();
         Assert.assertTrue(status);
+        node.log(Status.INFO, "Info message displayed on my contact page");
         signInPage.signOut();
+        node.log(Status.INFO, "Signed out successfully after verification");
     }
 
     @Test(priority = 7)
@@ -99,12 +111,15 @@ public class HomePageTest extends BaseHelper {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.createNewUser();
+        node.log(Status.INFO, "Created new user successfully");
 
         MyContactPage myContactPage = new MyContactPage(driver);
         myContactPage.clickMyAccountCreditSlips();
         boolean status = myContactPage.verifyInfoMessageDisplayed();
         Assert.assertTrue(status);
+        node.log(Status.INFO, "Info message displayed on my contact page");
         signInPage.signOut();
+        node.log(Status.INFO, "Signed out successfully after verification");
     }
 
     @Test(priority = 8)
@@ -113,8 +128,11 @@ public class HomePageTest extends BaseHelper {
         String productName = "shirts";
         HomePage homePage = new HomePage(driver);
         homePage.searchProduct(productName);
+        node.log(Status.INFO, "Product searched successfully");
+
         homePage.verifySearchResultsName(productName);
         homePage.verifySearchResultsContainsProductName(productName);
+        node.log(Status.INFO, "Searched product contain search item detail");
     }
 
     @Test(priority = 9)
@@ -122,14 +140,18 @@ public class HomePageTest extends BaseHelper {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.createNewUser();
+        node.log(Status.INFO, "New user created successfully");
 
         ContactUsPage contactUsPage = new ContactUsPage(driver);
         contactUsPage.navigateToContactUsPage();
+        node.log(Status.INFO, "Navigated to contact us page successfully");
+
         boolean headerStatus = contactUsPage.verifyContactUsHeaderIsDisplayed();
         Assert.assertTrue(headerStatus);
         contactUsPage.fillInformationToContact("Customer service", Utils.getMessage(7));
         boolean successMessageStatus = contactUsPage.verifySuccessMessageDisplayed();
         Assert.assertTrue(successMessageStatus);
+        node.log(Status.INFO, "Query send to customer service and Success message displayed");
     }
 
     @Test(priority = 10)
@@ -137,12 +159,14 @@ public class HomePageTest extends BaseHelper {
 
         SignInPage signInPage = new SignInPage(driver);
         String email = signInPage.createNewUser();
+        node.log(Status.INFO, "New user created successfully");
 
         HomePage homePage = new HomePage(driver);
         homePage.scrollToFooterSection();
         homePage.subscribeTheNewsLetter(email);
         boolean status = homePage.verifyNewsLetterSuccessMessageIsDisplayed();
         Assert.assertTrue(status);
+        node.log(Status.INFO, "Query send to customer service and Success message displayed");
     }
 
     @Test(priority = 11)
@@ -150,8 +174,11 @@ public class HomePageTest extends BaseHelper {
 
         HomePage homePage = new HomePage(driver);
         homePage.scrollToFooterSection();
+        node.log(Status.INFO, "Scrolled to footer section successfully");
+
         boolean status = homePage.verifyAddressIsPresent();
         Assert.assertTrue(status);
+        node.log(Status.INFO, "Company address available on footer section");
     }
 
     @Test(priority = 12)
@@ -159,12 +186,16 @@ public class HomePageTest extends BaseHelper {
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.createNewUser();
+        node.log(Status.INFO, "New user created successfully");
 
         MyContactPage myContactPage = new MyContactPage(driver);
         myContactPage.clickMyAccountMyAddress();
         boolean status = myContactPage.verifyInfoMessageDisplayed();
         Assert.assertTrue(status);
+        node.log(Status.INFO, "Info message displayed successfully on my contact page");
+
         signInPage.signOut();
+        node.log(Status.INFO, "Signed out successfully");
     }
 
 }

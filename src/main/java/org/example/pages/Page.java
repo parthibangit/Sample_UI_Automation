@@ -7,11 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.List;
 
 public class Page {
+
+    private static final Logger logger = LoggerFactory.getLogger(Page.class);
 
     private final WebDriver driver;
     private final long TIMEOUT = 30L;
@@ -27,7 +31,7 @@ public class Page {
             element.click();
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
     protected String getText(By by) {
@@ -37,10 +41,10 @@ public class Page {
         try {
             WebElement element = waitForElementVisible(by);
             text =  element.getText();
+            logger.info("Following text retrieved: "+ text);
         }
         catch (Exception e) {
-
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
         return text;
     }
@@ -51,9 +55,10 @@ public class Page {
             WebElement element = waitForElementVisible(by);
             element.clear();
             element.sendKeys(input);
+            logger.info("Following text inputted: "+ input);
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
@@ -62,9 +67,10 @@ public class Page {
         try {
             WebElement element = waitForElementClickable(by);
             element.click();
+            logger.info("Element clicked successfully");
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
@@ -75,9 +81,10 @@ public class Page {
             WebElement element = waitForElementPresent(by);
             Select select = new Select(element);
             select.selectByValue(value);
+            logger.info("Following value selected from drop down: "+ value);
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
@@ -87,10 +94,11 @@ public class Page {
             WebElement element = waitForElementPresent(by);
             Select select = new Select(element);
             select.selectByVisibleText(text);
+            logger.info("Following visible text selected from drop down: "+ text);
         }
 
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
@@ -100,10 +108,11 @@ public class Page {
             WebElement element = waitForElementClickable(by);
             if (!element.isSelected()) {
                 element.click();
+                logger.info("Radio button selected");
             }
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
@@ -111,6 +120,7 @@ public class Page {
         WebElement element = waitForElementPresent(by);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
+        logger.info("Scrolled to element using java script executor");
     }
 
     public boolean isElementDisplayed(By by) {
@@ -131,7 +141,7 @@ public class Page {
             elements =  driver.findElements(by);
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
         return elements;
     }
@@ -144,7 +154,7 @@ public class Page {
             element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
         return  element;
     }
@@ -157,7 +167,7 @@ public class Page {
             element = wait.until(ExpectedConditions.elementToBeClickable(by));
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
         return  element;
     }
@@ -170,10 +180,9 @@ public class Page {
             element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
         return  element;
     }
-
 
 }

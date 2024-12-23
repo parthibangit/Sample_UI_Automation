@@ -2,8 +2,13 @@ package org.example.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ContactUsPage extends Page{
+
+    private static final Logger logger = LoggerFactory.getLogger(ContactUsPage.class);
+
 
     public ContactUsPage(WebDriver driver) {
         super(driver);
@@ -21,7 +26,7 @@ public class ContactUsPage extends Page{
     public void navigateToContactUsPage() {
 
         navigateTo(CONTACT_US_LINK);
-        System.out.println("... Navigated to Contact us page ...");
+        logger.info("... Navigated to Contact us page ...");
     }
 
     public boolean verifyContactUsHeaderIsDisplayed() {
@@ -35,7 +40,7 @@ public class ContactUsPage extends Page{
         click(EMAIL_ADDRESS_INPUT);
         type(MESSAGE_TEXT_BOX, message);
         click(SUBMIT_MESSAGE_BUTTON);
-        System.out.println("... Information filled to contact ...");
+        logger.info("... Information filled to contact ...");
     }
 
     public boolean verifySuccessMessageDisplayed() {

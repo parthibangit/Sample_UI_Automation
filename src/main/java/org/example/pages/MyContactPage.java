@@ -2,8 +2,13 @@ package org.example.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MyContactPage extends Page{
+
+    private static final Logger logger = LoggerFactory.getLogger(MyContactPage.class);
+
 
     public MyContactPage(WebDriver driver) {
         super(driver);
@@ -19,25 +24,25 @@ public class MyContactPage extends Page{
     public void clickMyAccountOrderHistory() {
 
         click(ORDER_HISTORY_LINK);
-        System.out.println("... Order history section clicked ...");
+        logger.info("... Order history section clicked ...");
     }
 
     public void clickMyAccountCreditSlips() {
 
         click(CREDIT_SLIPS_LINK);
-        System.out.println("... Credit slip section clicked ...");
+        logger.info("... Credit slip section clicked ...");
     }
 
     public void clickMyAccountMyAddress() {
 
         click(MY_ADDRESS_LINK);
-        System.out.println("... My address section clicked ...");
+        logger.info("... My address section clicked ...");
     }
 
     public void clickShopCart() {
 
         click(SHOP_CART_LINK);
-        System.out.println("... Shop cart clicked ...");
+        logger.info("... Shop cart clicked ...");
     }
 
     public boolean verifyInfoMessageDisplayed() {

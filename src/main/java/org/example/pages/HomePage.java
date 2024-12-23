@@ -4,11 +4,15 @@ import org.example.utilities.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.util.List;
 
 public class HomePage extends Page {
+
+    private static final Logger logger = LoggerFactory.getLogger(HomePage.class);
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -31,35 +35,44 @@ public class HomePage extends Page {
 
 
     public void scrollToFooterSection() {
+
         scrollToElementView(STORE_ADDRESS);
-        System.out.println("... Page scrolled to footer successfully ...");
+        logger.info("... Page scrolled to footer successfully ...");
     }
+
     public boolean verifyAddressIsPresent() {
+
         return isElementDisplayed(STORE_ADDRESS);
     }
+
     public void subscribeTheNewsLetter(String email) {
 
         click(INPUT_NEWS_LETTTER);
         type(INPUT_NEWS_LETTTER, email);
         click(INPUT_NEWS_LETTTER_BUTTON);
-        System.out.println("... News letter information entered and clicked ...");
+        logger.info("... News letter information entered and clicked ...");
     }
+
     public boolean verifyNewsLetterSuccessMessageIsDisplayed() {
+
         return isElementDisplayed(NEWS_LETTER_SUCCESS_MESSAGE);
     }
+
     public void searchProduct(String productName) {
 
         type(SEARCH_INPUT, productName);
         click(SEARCH_BUTTON);
-        System.out.println("... Product searched successfully ...");
+        logger.info("... Product searched successfully ...");
     }
+
     public void verifySearchResultsName(String productName) {
 
         String searchedResult = getText(SEARCHED_ITEM_NAME);
         String searchedProduct = Utils.transformString(searchedResult);
         Assert.assertEquals(searchedProduct.toLowerCase(), productName);
-        System.out.println("... Search result verified successfully ...");
+        logger.info("... Search result verified successfully ...");
     }
+
     public void verifySearchResultsContainsProductName(String productName) {
 
         List<WebElement> elements = getListElements(SEARCHED_RESULTS_PRODUCT_NAME);
@@ -67,7 +80,8 @@ public class HomePage extends Page {
 
             String searchedResult = element.getText();
             Assert.assertTrue(searchedResult.contains(productName));
-            System.out.println("... Search result contains "+productName+" successfully ...");
+            logger.info("... Search result contains "+productName+" successfully ...");
         }
     }
+
 }

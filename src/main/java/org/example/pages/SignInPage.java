@@ -4,9 +4,13 @@ import org.example.configuration.PropertyReader;
 import org.example.utilities.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 public class SignInPage extends Page {
+
+    private static final Logger logger = LoggerFactory.getLogger(SignInPage.class);
 
     public SignInPage(WebDriver driver) {
         super(driver);
@@ -50,17 +54,18 @@ public class SignInPage extends Page {
     public void navigateToSignInPage() {
 
         navigateTo(SIGN_IN_PAGE_LINK);
-        System.out.println("... Navigated to Sign in page ...");
+        logger.info("... Navigated to Sign in page ...");
     }
 
     public void enterEmailAddress(String email) {
+
         type(EMAIL_INPUT, email);
-        System.out.println("... Email address inputted ...");
+        logger.info(email+" inputted ...");
     }
 
     public void clickCreateButton() {
         click(CREATE_ACCOUNT_BUTTON);
-        System.out.println("... Clicked create button ...");
+        logger.info("... Create button clicked successfully ...");
     }
 
     public boolean verifyCreateAccountHeaderIsPresent() {
@@ -74,18 +79,21 @@ public class SignInPage extends Page {
         type(LAST_NAME_INPUT, lastName);
         click(USER_EMAIL_INPUT);
         type(PASSWORD_INPUT, password);
+        logger.info("... User information entered successfully ...");
     }
 
     public void selectDateOfBirth(String day, String month, String year) {
+
         selectByValue(DAY_SELECT, day);
         selectByValue(MONTH_SELECT, month);
         selectByValue(YEAR_SELECT, year);
-        System.out.println("... User information entered successfully ...");
+        logger.info("... Date of birth selected successfully ...");
     }
 
     public void clickRegisterButton() {
+
         click(SUBMIT_BUTTON);
-        System.out.println("... Register button clicked ...");
+        logger.info("... Register button clicked ...");
     }
 
     public boolean verifySuccessMessage() {
@@ -94,10 +102,11 @@ public class SignInPage extends Page {
     }
 
     public void loginWithExistingUserInformation() {
+
         type(EMAIL_ADDRESS, PropertyReader.getInstance().getValue("email"));
         type(PASSWORD, PropertyReader.getInstance().getValue("pwd"));
         click(SIGNIN_BUTTON);
-        System.out.println("... Logged in successfully ...");
+        logger.info("... Logged in successfully with existing credentials ...");
     }
 
     public boolean verifyMyAccountHeaderIsPresent() {
@@ -120,8 +129,7 @@ public class SignInPage extends Page {
     public void signOut() {
 
         click(SIGN_OUT_LINK);
-        System.out.println("... Sign out button clicked successfully ...");
-
+        logger.info("... Sign out button clicked successfully ...");
     }
 
     public void retrievePassword(String email) {
@@ -131,7 +139,7 @@ public class SignInPage extends Page {
         Assert.assertTrue(status);
         type(FORGOT_PASSWORD_EMAIL_ADDRESS_INPUT, email);
         click(RETRIEVE_PASSWORD_BUTTON);
-        System.out.println("... Email entered and clicked successfully for retrieve password ...");
+        logger.info("... Email entered and clicked successfully for retrieve password ...");
     }
 
     public boolean verifyRetrievePasswordEmailConfirmationIsDisplayed() {
@@ -144,7 +152,7 @@ public class SignInPage extends Page {
         type(EMAIL_ADDRESS, email);
         type(PASSWORD, password);
         click(SIGNIN_BUTTON);
-        System.out.println("... User information entered ...");
+        logger.info("... Incorrect user information entered ...");
     }
 
     public boolean verifyAuthenticationFailedErrorMessageIsDisplayed() {

@@ -27,7 +27,7 @@ public class HomePageTest extends BaseHelper {
         signInPage.clickRegisterButton();
 
         boolean successMessageStatus = signInPage.verifySuccessMessage();
-        Assert.assertTrue(false);
+        Assert.assertTrue(successMessageStatus);
         node.log(Status.INFO, "Success message displayed after creating new user");
     }
 

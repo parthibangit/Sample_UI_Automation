@@ -3,7 +3,7 @@
 <suite name="Smoke Suite" thread-count="2">
 
 
-    <test name="Test One">
+    <test name="Create New User">
         <parameter name="browserName" value="chrome" />
         <classes>
             <class name="sample.ecommerce.HomePageTest">
